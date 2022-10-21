@@ -1,0 +1,87 @@
+﻿@model Kopija.ModeliPomocni.EdituserViewModel
+
+@{
+    ViewData["Title"] = "Izmeni korisnika";
+}
+
+<h1 class="my-4">Izmena korisnika</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a asp-action="DodajKorisnika">Kreiraj novog korisnika</a></li>
+    <li class="breadcrumb-item active">@Html.ActionLink("Nazad", "KorisnikLista")</li>
+    <li class="breadcrumb-item">Izmena korisnika</li>
+</ol>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <p class="mb-0"><i class="fa-solid fa-check"></i> @ViewBag.Message</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p class="mb-0"><i class="fas fa-exclamation-triangle"></i> @Html.ValidationMessage("Provera")</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form asp-action="EditUser">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    @*<div class="mb-3">
+                        <label asp-for="Id" class="control-label"> Id</label>
+                        <input asp-for="Id" disabled class="form-control" />
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div>*@
+
+                    <div class="mb-3">
+                        <label asp-for="Ime" class="control-label"> Ime</label>
+                        <input asp-for="Ime" class="form-control" />
+                        <span asp-validation-for="Ime" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Prezime" class="control-label"> Unesite Prezime radnika</label>
+                        <input asp-for="Prezime" class="form-control" />
+                        <span asp-validation-for="Prezime" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="UserName" class="control-label"> Unesite korisnicko ime radnika</label>
+                        <input asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label asp-for="BrojTelefona" class="control-label"> Unesite broj telefona</label>
+                        <input asp-for="BrojTelefona" class="form-control" />
+                        <span asp-validation-for="BrojTelefona" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="RadnoMesto" class="control-label"> Unesite poziciju radnika</label>
+                        <input asp-for="RadnoMesto" class="form-control" />
+                        <span asp-validation-for="RadnoMesto" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <div class="float-end">
+                            <input type="submit" value="Izmeni korisnika" class="btn btn-danger" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="@Url.Content("~/lib/jquery/dist/jquery.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/lib/jquery-validation/dist/jquery.validate.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js")"></script> <!--OVO JE KLJUCNO STO ME USRANE VALIDACIJE JEBALE POLA DANA JEBEM IM MATER USRANU-->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+        }

@@ -1,0 +1,67 @@
+﻿@*
+  
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model Kopija.Models.LoginModel
+}
+
+<head>
+    <script type="text/javascript">
+        @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"].Errors.Count > 0)
+        {
+            <text>
+                $(document).ready(function () {
+                    alert('@ViewData.ModelState["Error"].Errors.First().ErrorMessage');
+                });
+            </text>
+        }
+    </script>
+</head>
+
+
+<h1 class="my-4">Uloguj se</h1>
+
+ <div class="login_content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"].Errors.Count > 0)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <p class="mb-0"><i class="fas fa-exclamation-triangle"></i> @ViewData.ModelState["Error"].Errors.First().ErrorMessage</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                <div class="card login-card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header">
+                        <h3 class="text-center font-weight-light my-4">Prijava</h3>
+                    </div>
+                    <div class="card-body">
+						<form asp-action="Login">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" type="text" asp-for="UserName">
+                                <label>Korisničko Ime</label>
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+							</div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" type="password" asp-for="Password">
+                                <label>Šifra</label>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+							</div>
+                            <div class="form-floating mb-3">
+                                <div class="float-end">
+                                    <input type="submit" class="btn btn-danger d-block" value="Uloguj se" />
+                                </div>
+							</div>
+						</form>
+                    </div>
+                    @*<div class="card-footer text-center py-3">
+                        <div class="small">Pokreće ga: @ViewData["servis_id"] <b>PerSu</b></div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+

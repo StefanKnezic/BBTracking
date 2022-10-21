@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Kopija.Modeli.OpremaKategorijaListaModel>
+
+@{
+    ViewData["Title"] = "Lista Kategorija opreme";
+}
+
+<h1 class="my-4">Lista Kategorija opreme sa Sektorima</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">@Html.ActionLink("Nazad", "Kategorija")</li>
+    <li class="breadcrumb-item">Spisak Kategorija sa sektorima</li>
+</ol>
+
+<div id="Stampanje" class="card mb-4 oprema-radnika">
+    <div id="pdfContainer" class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.oprema_kategorija_ime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.oprema_kategorija_sektor_iime)
+                    </th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.oprema_kategorija_ime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.oprema_kategorija_sektor_iime)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

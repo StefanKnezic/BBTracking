@@ -1,0 +1,93 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    @model Kopija.Modeli.KorisnikModel
+    
+
+}
+
+<h1 class="my-4">Dodaj korisnika</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">@Html.ActionLink("Lista Svih Korisnika", "KorisnikLista")</li>
+</ol>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <p class="mb-0"><i class="fa-solid fa-check"></i> @ViewBag.Message</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input asp-for="NivoPristupa" type="hidden" value="@ViewBag.UserRole">                              
+                    <div class="mb-3">
+                        <label asp-for="Ime" class="control-label"> Unesite Ime radnika</label>
+                        <input asp-for="Ime" class="form-control" />
+                        <span asp-validation-for="Ime" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Prezime" class="control-label"> Unesite Prezime radnika</label>
+                        <input asp-for="Prezime" class="form-control" />
+                        <span asp-validation-for="Prezime" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="KorisnickoIme" class="control-label"> Unesite korisnicko ime radnika</label>
+                        <input asp-for="KorisnickoIme" class="form-control" />
+                        <span asp-validation-for="KorisnickoIme" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Sifra" class="control-label"> Unesite korisnicku sifru radnika</label>
+                        <input asp-for="Sifra" class="form-control" />
+                        <span asp-validation-for="Sifra" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label asp-for="BrojTelefona" class="control-label"> Unesite broj telefona</label>
+                        <input asp-for="BrojTelefona" class="form-control" />
+                        <span asp-validation-for="BrojTelefona" class="text-danger"></span>
+                    </div>
+                    <input asp-for="SektorId" type="hidden" value="@ViewBag.UserSektorId">
+
+                    <div class="mb-3">
+                        <label asp-for="LokacijaId" class="control-label"></label>
+                        <select class="selectpicker form-control" ata-live-search="true" data-container="body" asp-for="LokacijaId" asp-items="@(new SelectList(ViewBag.lokacija,"lokacija_id","lokacija_ime"))">
+                            <option value="">Izaberi lokaciju</option>
+                        </select>
+                        <span asp-validation-for="LokacijaId" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label asp-for="RadnoMesto" class="control-label"> Unesite poziciju radnika</label>
+                        <input asp-for="RadnoMesto" class="form-control" />
+                        <span asp-validation-for="RadnoMesto" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <div class="float-end">
+                            <input type="submit" value="Dodaj korisnika" class="btn btn-danger" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="@Url.Content("~/lib/jquery/dist/jquery.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/lib/jquery-validation/dist/jquery.validate.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js")"></script> <!--OVO JE KLJUCNO STO ME USRANE VALIDACIJE JEBALE POLA DANA JEBEM IM MATER USRANU-->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+        }

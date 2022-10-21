@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Kopija.Modeli.KorisnikListaModel>
+
+@{
+    ViewData["Title"] = "Lista svih Korisnika";
+}
+
+<h1 class="my-4">Lista Svih Korisnika</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a asp-action="DodajKorisnika">Kreiraj novog korisnika</a></li>
+    <li class="breadcrumb-item">Spisak Korisnika</li>
+</ol>
+
+<div id="Stampanje" class="card mb-4 oprema-radnika">
+    <div id="pdfContainer" class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Prezime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BrojTelefona)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sektor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RadnoMesto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LokacijaIme)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Adresa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KorisnickoIme)
+                    </th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Prezime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BrojTelefona)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sektor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RadnoMesto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LokacijaIme)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Adresa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KorisnickoIme)
+                        </td>
+                        <td class="table-btns">
+                            <a class="btn btn-secondary btn-sm mb-1" asp-action="EditUser" asp-route-id="@item.Id">Izmeni</a>
+                            <a class="btn btn-danger btn-sm" asp-action="ChangePassword" asp-route-id="@item.Id">Promeni Lozinku</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    
+  
+
+        }

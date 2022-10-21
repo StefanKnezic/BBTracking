@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Kopija.ModeliPomocni.OpremaListaSviModel>
+
+@{
+    ViewData["Title"] = "Lista Opreme";
+}
+
+<h1 class="my-4">Kompletan spisak opreme</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a asp-action="Oprema">Dodaj Novu opremu na stanje</a></li>
+    <li class="breadcrumb-item active">Kompletan spisak opreme</li>
+</ol>
+
+<div id="Stampanje" class="card mb-4 oprema-radnika">
+    <div id="pdfContainer" class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.QRKod)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Marka)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Model)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KategorijaIme)
+                    </th>
+                    
+                    <th>
+                        @Html.DisplayNameFor(model => model.SerijskiBroj)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DatumNabavke)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cena)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Garancija)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ImeDobavljaca)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sektor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Napomena)
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QRKod)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Marka)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KategorijaIme)
+                        </td>
+                       
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SerijskiBroj)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DatumNabavke)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cena)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Garancija)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ImeDobavljaca)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sektor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Napomena)
+                        </td>
+                        <td class="d-flex table-btns">
+                            <a class="btn btn-danger btn-sm me-1" asp-action="Otpad" asp-route-id="@item.Id"><i class="fa-solid fa-trash-can"></i></a>
+                            <a class="btn btn-secondary btn-sm" asp-action="OpremaIstorija" asp-route-id="@item.Id"><i class="fa-solid fa-clock-rotate-left"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,54 @@
+﻿@model Kopija.Modeli.oprema_kategorija
+
+@{
+    ViewData["Title"] = "Kategorija opreme";
+}
+
+
+<h1 class="my-4">Kategorija opreme</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">@Html.ActionLink("Lista Kategorija", "KategorijaLista")</li>
+</ol>
+
+<div class="row">
+    <div class="col-lg-5 mx-auto">
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <p class="mb-0"><i class="fa-solid fa-check"></i> @ViewBag.Message</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        <div class="card mb-4">
+            <div class="card-body">
+                <form asp-action="Kategorija">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="mb-3">
+                        <label asp-for="oprema_kategorija_ime" class="control-label"></label>
+                        <input asp-for="oprema_kategorija_ime" class="form-control" />
+                        <span asp-validation-for="oprema_kategorija_ime" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <input asp-for="oprema_kategorija_sektor_id" type="hidden" value="@ViewBag.sektor">
+                    </div>
+                    <div class="mb-3">
+                        <div class="float-end">
+                            <button type="sumbit" class="btn btn-danger">Dodaj</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="@Url.Content("~/lib/jquery/dist/jquery.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/lib/jquery-validation/dist/jquery.validate.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js")"></script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

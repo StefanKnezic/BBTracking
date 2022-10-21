@@ -1,0 +1,152 @@
+﻿@{
+    Layout = null;
+    var KorisnickoIme = TempData["KorisnickoIme"];
+    var Ime = TempData["ImePrezime"];
+    var LokacijaIme = TempData["lokacijaIme"];
+    var Adresa = TempData["Adresa"];
+    var Mesto = TempData["Mesto"];
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewData["Title"] - BBTracking</title>
+ </head>
+    <body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Arial',sans-serif !important
+        }
+
+        .header {
+            margin-top: 60px;
+            margin-bottom: 100px
+        }
+
+            .header .persu-logo {
+                width: auto;
+                height: 100px
+            }
+
+            .header h3 {
+                font-weight: 600
+            }
+
+        hr:not([size]) {
+            height: 1px
+        }
+
+        hr {
+            opacity: 1
+        }
+
+        .card {
+            border: 1px solid rgba(0,0,0,.125) !important;
+            border-radius: 0.25rem !important;
+            padding: 10px
+        }
+
+        .header h3 {
+            font-weight: 700;
+            margin-bottom: 30px
+        }
+
+        .header p {
+            font-size: 12px
+        }
+
+        .content {
+            margin-left: 20px;
+            margin-bottom: 200px
+        }
+
+        .daboom {
+            margin-top: 120px !important
+        }
+    </style>
+  
+
+        <div class="container">
+            <div class="header py-5">
+                <div class="d-flex">
+                <img class="persu-logo d-block me-5" src="https://i.imgur.com/hoIF62i.png">
+                    <div class="me-5">
+                        <h3>BB Trade ad</h3>
+                        <p><b class="me-2">Adresa:</b> TRG Oslobođenja BB, 23210 Žitište</p>
+                        <p><b class="me-2">Telefon / fax:</b> +381 023 821 969</p>
+                        <p><b class="me-2">Office:</b> Beogradska 11 / I sprat, 23000 Zrenjanin</p>
+                        <p><b class="me-2">E-mail:</b> bb.officezr@gmail.com</p>
+                    </div>
+                    <div>
+                        <div style="margin-top: 37px;"></div>
+                        <p><b class="me-2">Tekući račun:</b> 310-156947-16 NLB Banka</p>
+                        <p><b class="me-2">PIB:</b> 101377960</p>
+                        <p><b class="me-2">Matični broj:</b> 08038791</p>
+                        <p><b class="me-2">Šifra delatnosti:</b> 4711</p>
+                    </div>
+                </div>
+            </div>
+        
+
+            <div class="content pb-5">
+                <h4 class="mb-3"><b>Davalac opreme:</b> BB Trade</h4>
+
+            @if (KorisnickoIme.ToString().Length > 0)
+            {
+
+                <h4 class="mb-3"><b>Primalac opreme:</b> @KorisnickoIme</h4>
+            }else 
+
+            if(Ime.ToString().Length > 0){
+
+                <h4 class="mb-3"><b>Primalac opreme:</b> @Ime</h4>
+            }
+            else
+            if (LokacijaIme.ToString().Length > 0)
+            {
+
+                <h4 class="mb-3"><b>U objekat:</b> @LokacijaIme</h4>
+                <h4 class="mb-3"><b>Adresa:</b> @Adresa, @Mesto </h4>
+                
+            }
+            
+                <h4 class="mb-3"><b>Izdata oprema QR:</b> @TempData["Qr"]</h4>
+                <h4 class="mb-3"><b>Kategorija:</b> Laptop</h4>
+                <h4 class="mb-3"><b>Marka:</b> @TempData["Marka"]</h4>
+                <h4 class="mb-3"><b>Model:</b> @TempData["Model"]</h4>
+            <h4 class="mb-3"><b>Serijski broj:</b> @TempData["SerijskiBroj"]</h4>
+            <h4 class="mb-3"><b>Datum predaje opreme:</b> @TempData["Datum"]</h4>
+
+            <h4 class="mb-3"><b>Napomena:</b></h4>
+                <div class="card w-100">
+                    <div class="card-body">
+                    <p> @TempData["Napomena"]</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer pt-5">
+                <div class="row pb-4">
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-6 mx-auto">
+                                <p class="text-center mb-5">Za BB Trade ad</p>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-6 mx-auto">
+                                <p class="text-center mb-5">Primalac opreme</p>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <h4 class="text-center daboom"><b>Datum izdavanja dokumenta: </b> @DateTime.Now.Date.ToShortDateString() </h4>
+            </div>
+        </div>
+    </body>
+</html>
+

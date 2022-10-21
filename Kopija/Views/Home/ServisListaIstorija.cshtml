@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Kopija.Modeli.ServisIstorijaModel>
+
+@{
+    ViewData["Title"] = "Istorija Servisa";
+}
+
+<h1 class="my-4">Istorija opreme na servisu</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a asp-action="Servis">Dodaj Novu opremu na servis</a></li>
+    <li class="breadcrumb-item active">Istorija opreme na servisu</li>
+</ol>
+
+@*<p>@ViewBag.Message</p>*@
+
+<div id="Stampanje" class="card mb-4 oprema-radnika">
+    <div id="pdfContainer" class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.QR)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Marka)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Model)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Datum)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sektor)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Kategorija)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Servis)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Napomena)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.OpisKvarapre)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.PokupioKorisnickoIme)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Datumpokupio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NapomenaPosle)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.OpisKvara)
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QR)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Marka)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Datum)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sektor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Kategorija)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Servis)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Napomena)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OpisKvarapre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PokupioKorisnickoIme)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Datumpokupio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NapomenaPosle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OpisKvara)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

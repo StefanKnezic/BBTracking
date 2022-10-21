@@ -1,0 +1,78 @@
+﻿@model Kopija.Modeli.NaServisCreateModel
+
+@{
+    ViewData["Title"] = "Servis";
+}
+
+<h1 class="my-4">Dodavanje opreme na servis</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">@Html.ActionLink("Lista Opreme na servisu", "ServisLista")</li>
+    <li class="breadcrumb-item active">@Html.ActionLink("Sva oprema na servisu", "ServisListaSvi")</li>
+    <li class="breadcrumb-item active">@Html.ActionLink("Istorija Servisa", "ServisListaIstorija")</li>
+</ol>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <p class="mb-0"><i class="fa-solid fa-check"></i> @ViewBag.Message</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form asp-action="Servis">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label asp-for="na_servis_servis_id" class="control-label"></label>
+                        <select class="selectpicker form-control" data-live-search="true" data-container="body" aria-label="Default select example" asp-for="na_servis_servis_id" asp-items="@(new SelectList(ViewBag.servis,"servis_id","servis_ime"))">
+                            <option value="">Izaberi servisera</option>
+                        </select>
+                        <span asp-validation-for="na_servis_servis_id" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="na_servis_oprema_id" class="control-label"></label>
+                        <select class="selectpicker form-control" data-live-search="true" data-container="body" aria-label="Default select example" asp-for="na_servis_oprema_id" asp-items="@(new SelectList(ViewBag.oprema,"OpremaId","Marka"))">
+                            <option value="">Izaberi opremu</option>
+                        </select>
+                        <span asp-validation-for="na_servis_oprema_id" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class='mb-3 date'>
+                        <label asp-for="na_servis_datum"></label>
+                        <input asp-for="na_servis_datum" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" placeholder="Izaberi datum" required aria-label="Izaberi datum" />
+                        <span asp-validation-for="na_servis_datum" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="na_servis_opis_kvara_pre" class="control-label"></label>
+                        <input asp-for="na_servis_opis_kvara_pre" class="form-control" />
+                        <span asp-validation-for="na_servis_opis_kvara_pre" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="na_servis_napomena" class="control-label"></label>
+                        <input asp-for="na_servis_napomena" class="form-control" />
+                        <span asp-validation-for="na_servis_napomena" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="float-end">
+                            <button type="sumbit" class="btn btn-danger">Dodaj</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

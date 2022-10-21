@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Kopija.Modeli.servis>
+
+@{
+    ViewData["Title"] = "Servis Lista";
+}
+
+<h1 class="my-4">Servis Lista</h1>
+<ol class="breadcrumb mb-2">
+    <li class="breadcrumb-item active"><a asp-action="Servis">Dodaj Novog servisera</a></li>
+    <li class="breadcrumb-item active">Spisak Servisa</li>
+</ol>
+
+<div id="Stampanje" class="card mb-4 oprema-radnika">
+    <div id="pdfContainer" class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                   @* <th>
+                        @Html.DisplayNameFor(model => model.servis_sektor_id)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.servis_ime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servis_pib)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servis_adresa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servis_kontakt_osoba)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servis_kontakt_osoba_broj)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servis_kontakt_osoba_broj1)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @* <td>
+                            @Html.DisplayFor(modelItem => item.servis_sektor_id)
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.servis_ime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.servis_pib)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.servis_adresa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.servis_kontakt_osoba)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.servis_kontakt_osoba_broj)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.servis_kontakt_osoba_broj1)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

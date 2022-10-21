@@ -1,0 +1,61 @@
+﻿
+
+@{
+    @model Kopija.ModeliPomocni.NaServisUpdate
+    
+}
+
+<h1 class="my-4">Pokupi opremu sa servisa</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a asp-action="Servis">Dodaj Novu opremu na servis</a></li>
+    <li class="breadcrumb-item active">@Html.ActionLink("Nazad na listu", "ServisLista")</li>
+    <li class="breadcrumb-item">Pokupi opremu sa servisa</li>
+</ol>
+
+<div class="row">
+    <div class="col-lg-5 mx-auto">
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <p class="mb-0"><i class="fa-solid fa-check"></i> @ViewBag.Message</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        <div class="card mb-4">
+            <div class="card-body">
+                <form asp-action="Pokupi">
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <label asp-for="PokupljenoDatum" class="control-label"></label>
+                            <input asp-for="PokupljenoDatum" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" />
+                            <span asp-validation-for="PokupljenoDatum" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="OpisKvara" class="control-label"></label>
+                        <input asp-for="OpisKvara" class="form-control" />
+                        <span asp-validation-for="OpisKvara" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Napomena" class="control-label"></label>
+                        <input asp-for="Napomena" class="form-control" />
+                        <span asp-validation-for="Napomena" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="float-end">
+                            <button type="sumbit" class="btn btn-danger">Pokupi</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

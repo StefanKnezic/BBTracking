@@ -1,0 +1,155 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model Kopija.ModeliPomocni.RelokacijaModel
+
+}
+
+<h1 class="my-4">Relokacija</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">@Html.ActionLink("Sva oprema u prometu u sektoru", "RelokacijaLista")</li>
+    <li class="breadcrumb-item active">@Html.ActionLink("Sva oprema u prometu", "RelokacijaListaSvi")</li>
+</ol>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <p class="mb-0"><i class="fa-solid fa-check"></i> @ViewBag.Message</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p class="mb-0"><i class="fas fa-exclamation-triangle"></i> @Html.ValidationMessage("ErrorMessage")</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form asp-action="Relokacija">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label asp-for="OpremaId" class="control-label"></label>
+                        <select class="selectpicker form-control" data-live-search="true" data-container="body" asp-for="OpremaId" asp-items="@(new SelectList(ViewBag.oprema,"OpremaId","Marka"))">
+                            <option value="">Izaberi opremu(sva oprema)</option>
+                        </select>
+                        <span asp-validation-for="OpremaId" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3" id="komeSaljes">
+                        <label>Kome:</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option  selected>Izaberi Gde zelite da relocirate opremu</option>
+                            <option value="1">radnik</option>
+                            <option value="2">radnja</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3" id="radnik" style="display: none;">
+                        <label>Izaberi Radnika</label>
+                        <select class="selectpicker form-control" data-live-search="true" data-container="body" aria-label="Default select example" asp-for="DokleId" asp-items="@(new SelectList(ViewBag.Korisnik,"Id","Ime"))">
+                            <option value="0">Izaberi Radnika</option>
+                        </select>
+                        <span asp-validation-for="DokleId" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3" id="radnja" style="display: none;">
+                        <label>Izaberi Radnju</label>
+                        <select class="selectpicker form-control" data-live-search="true" data-container="body" aria-label="Default select example" asp-for="DokleLokacijaId" asp-items="@(new SelectList(ViewBag.Lokacija,"lokacija_id","lokacija_ime"))">
+                            <option value="0">Izaberi Radnju</option>
+                        </select>
+                        <span asp-validation-for="DokleLokacijaId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-3" id="korisnik">
+                        <label asp-for="DoKoga" class="control-label"></label>
+                        <input asp-for="DoKoga" id="pisanje" class="form-control" />
+                        <span asp-validation-for="DoKoga" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Napomena" class="control-label"></label>
+                        <input asp-for="Napomena" class="form-control" />
+                        <span asp-validation-for="Napomena" class="text-danger"></span>
+                    </div>
+                    <div class='mb-3 date'>
+                        <label asp-for="Datum"></label>
+                        <input asp-for="Datum" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" placeholder="Izaberi datum" required aria-label="Izaberi datum" />
+                        <span asp-validation-for="Datum" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="float-end">
+                            <input type="submit" value="Relociraj" class="btn btn-danger" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script>
+    document.querySelector('#komeSaljes').addEventListener('change', (e) => {
+        const radnik = document.querySelector('#radnik');
+        const radnja = document.querySelector('#radnja');
+       
+        switch (e.target.value * 1) {
+            case 1:
+                radnik.style.display = 'block';
+                radnja.style.display = 'none';
+             
+
+                radnja.querySelector('select').selectedIndex = null;
+                break;
+
+            case 2:
+                radnja.style.display = 'block';
+                radnik.style.display = 'none';
+
+                radnik.querySelector('select').selectedIndex = null;
+                break;
+
+            default:
+                radnik.style.display = 'none';
+                radnja.style.display = 'none';
+
+                radnik.querySelector('select').selectedIndex = null;
+                radnja.querySelector('select').selectedIndex = null;
+                break;
+        }
+
+    });
+
+</script>
+
+<script>
+    
+    $('#pisanje').keyup(function () {
+        if ($(this).val() == '') {
+            $('#komeSaljes').show();
+            //$('#radnik').show();
+            //$('#radnja').show();
+
+        } else {
+            $('#komeSaljes').hide();
+            $('#radnik').hide();
+            $('#radnja').hide();
+        }
+
+        komeSaljes.querySelector('select').selectedIndex = null;
+        radnik.querySelector('select').selectedIndex = null;
+        radnja.querySelector('select').selectedIndex = null;
+    });
+</script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+        }

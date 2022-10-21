@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Kopija.ModeliPomocni.LokacijaSaOpremom>
+
+@{
+    ViewData["Title"] = "Lista Opreme u objektu";
+}
+
+<h1 class="my-4">Lista kompletne opreme u objektu</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">@Html.ActionLink("Nazad", "LokacijaLista","Account")</li>
+    <li class="breadcrumb-item">Spisak Opreme sa korisnicima</li>
+</ol>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p class="mb-0"><i class="fas fa-exclamation-triangle"></i> @Html.ValidationMessage("Error")</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+} else {
+
+
+
+
+
+
+<div id="Stampanje" class="card mb-4 oprema-radnika">
+    <div id="pdfContainer" class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Marka)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Model)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Qr)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SerijskiBroj)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Napomena)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Datum)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LokacijaIme)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LokacijaAdresa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LokacijaMesto)
+                    </th>
+                    
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Marka)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Qr)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SerijskiBroj)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Napomena)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Datum)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LokacijaIme)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LokacijaAdresa)
+                        </td>
+                         <td>
+                            @Html.DisplayFor(modelItem => item.LokacijaMesto)
+                        </td>
+
+                        
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+    Html.BeginForm("LokacijaSaOpremomPDF", "Home", FormMethod.Get);
+    {
+    <div class="mb-4">
+                <input type="submit" value="Stampaj listu opreme" class="btn btn-danger" />
+    </div>
+    }
+    Html.EndForm();
+
+
+}

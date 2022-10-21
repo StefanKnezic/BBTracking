@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Kopija.Modeli.sektor>
+
+@{
+    ViewData["Title"] = "Sektor Lista";
+}
+
+<h1 class="my-4">Lista sektora</h1>
+<ol class="breadcrumb mb-2">
+    <li class="breadcrumb-item active"><a asp-action="Sektor">Dodaj Novi sektor</a></li>
+    <li class="breadcrumb-item">Spisak Sektora</li>
+</ol>
+
+<div id="Stampanje" class="card mb-4 oprema-radnika">
+    <div id="pdfContainer" class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.sektor_ime)
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.sektor_ime)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

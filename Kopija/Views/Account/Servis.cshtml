@@ -1,0 +1,100 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+
+*@
+@{
+    @model Kopija.Modeli.servis
+
+
+
+}
+@{
+    ViewData["Title"] = "Dodaj Servisera opreme";
+
+}
+
+<h1 class="my-4">Dodaj Servisera</h1>
+<ol class="breadcrumb mb-2">
+    <li class="breadcrumb-item active">@Html.ActionLink("Lista Servisa", "ServisLista","Account")</li>
+</ol>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <p class="mb-0"><i class="fa-solid fa-check"></i> @ViewBag.Message</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form asp-action="Servis">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label asp-for="servis_ime" class="control-label"> Unesite ime</label>
+                        <input class="form-control" type="text" asp-for="servis_ime" placeholder="Ime">
+                        <span asp-validation-for="servis_ime" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="servis_adresa" class="control-label"> Unesite adresu servisa</label>
+                        <input class="form-control" type="text" asp-for="servis_adresa" placeholder="Adresa">
+                        <span asp-validation-for="servis_adresa" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="servis_pib" class="control-label"></label>
+                        <input class="form-control" type="text" asp-for="servis_pib" placeholder="pib">
+                        <span asp-validation-for="servis_pib" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label asp-for="servis_kontakt_osoba" class="control-label"></label>
+                        <input class="form-control" type="text" asp-for="servis_kontakt_osoba" placeholder="Osoba">
+                        <span asp-validation-for="servis_kontakt_osoba" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="servis_kontakt_osoba_broj" class="control-label"></label>
+                        <input class="form-control" type="text" asp-for="servis_kontakt_osoba_broj" placeholder="Broj">
+                        <span asp-validation-for="servis_kontakt_osoba_broj" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="servis_kontakt_osoba_broj1" class="control-label"></label>
+                        <input class="form-control" type="text" asp-for="servis_kontakt_osoba_broj1" placeholder="2.Broj">
+                        <span asp-validation-for="servis_kontakt_osoba_broj1" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="servis_sektor_id" class="control-label"></label>
+                        <select class="selectpicker form-control" data-live-search="true" data-container="body" asp-for="servis_sektor_id" asp-items="@(new SelectList(ViewBag.sektor,"sektor_id","sektor_ime"))">
+                            <option value="">Izaberi sektor</option>
+                        </select>
+                        <span asp-validation-for="servis_sektor_id" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <div class="float-end">
+                            <button type="sumbit" class="btn btn-danger">Dodaj</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript" src="@Url.Content("~/lib/jquery/dist/jquery.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/lib/jquery-validation/dist/jquery.validate.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js")"></script>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

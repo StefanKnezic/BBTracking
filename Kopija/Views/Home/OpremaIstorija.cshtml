@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Kopija.ModeliPomocni.OpremaListaIstorijaModel>
+
+@{
+    ViewData["Title"] = "Istorija Opreme";
+}
+
+<h1 class="my-4">Istorija opreme</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a asp-action="Oprema">Dodaj Novu opremu na stanje</a></li>
+    <li class="breadcrumb-item active">@Html.ActionLink("Lista kompletne Opreme", "OpremaListaSvi")</li>
+    <li class="breadcrumb-item active">Istorija Opreme</li>
+</ol>
+
+@*<p>@ViewBag.Message</p>*@
+
+<div id="Stampanje" class="card mb-4 oprema-radnika">
+    <div id="pdfContainer" class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Marka)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Model)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Napomena)
+                    </th>
+@*                    <th>
+                        @Html.DisplayNameFor(model => model.OdKoga)
+                    </th>*@
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.DoKoga)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LokacijaIme)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LokacijaAdresa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LokacijaMesto)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Datum)
+                    </th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Marka)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Napomena)
+                        </td>
+@*                        <td>
+                            @Html.DisplayFor(modelItem => item.OdKoga)
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DoKoga)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LokacijaIme)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LokacijaAdresa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LokacijaMesto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Datum)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@{
+    Html.BeginForm("OpremaIstorijaPDF", "Home", FormMethod.Get);
+    {
+        <div>
+            <input type="submit" value="Stampaj istoriju opreme" class="btn btn-danger" />
+        </div>
+    }
+    Html.EndForm();
+}

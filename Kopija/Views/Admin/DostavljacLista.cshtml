@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Kopija.Modeli.dostavljac>
+
+@{
+    ViewData["Title"] = "Dobavljac Lista";
+}
+
+<h1 class="my-4">Dobavljac lista</h1>
+<ol class="breadcrumb mb-2">
+    <li class="breadcrumb-item active"><a asp-action="Dostavljac">Dodaj Novog dobavljaca</a></li>
+    <li class="breadcrumb-item active">Spisak Servisa</li>
+</ol>
+
+<div id="Stampanje" class="card mb-4 oprema-radnika">
+    <div id="pdfContainer" class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.dostavljac_sektor_id)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.dostavljac_ime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dostavljac_pib)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dostavljac_adresa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dostavljac_kontakt_osoba)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dostavljac_kontakt_osoba_broj)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dostavljac_kontakt_osoba_broj1)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                       @* <td>
+                            @Html.DisplayFor(modelItem => item.dostavljac_sektor_id)
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dostavljac_ime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dostavljac_pib)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dostavljac_adresa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dostavljac_kontakt_osoba)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dostavljac_kontakt_osoba_broj)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dostavljac_kontakt_osoba_broj1)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Kopija.ModeliPomocni.RelokacijaListaSvi>
+
+@{
+    ViewData["Title"] = "Lista Opreme u prometu";
+}
+
+<h1 class="my-4">Lista kompletne opreme u prometu</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">@Html.ActionLink("Nazad", "Relokacija")</li>
+    <li class="breadcrumb-item">Spisak Opreme sa korisnicima</li>
+</ol>
+
+@*<p>@ViewBag.Message</p>*@
+
+<div id="Stampanje" class="card mb-4 oprema-radnika">
+    <div id="pdfContainer" class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Qr)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Marka)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Model)
+                    </th>
+                    
+                    <th>
+                        @Html.DisplayNameFor(model => model.SerijskiBroj)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Datum)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sektor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OdKoga)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DoKoga)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LokacijaIme)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Adresa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mesto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Napomena)
+                    </th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                                                <td>
+                            @Html.DisplayFor(modelItem => item.Qr)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Marka)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SerijskiBroj)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Datum)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sektor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OdKoga)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DoKoga)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LokacijaIme)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Adresa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mesto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Napomena)
+                        </td>
+                        <td>
+                            @if (item.UserName != "Servis")
+                            {
+                                <div class="d-flex table-btns">
+                                    <a class="btn btn-secondary btn-sm me-1" asp-action="Revers" asp-route-id="@item.Id">Revers</a>
+                                    <form asp-action="Razduzenje" method="OnGetDelete" asp-route-id="@item.Id" onclick="return confirm('Da li ste sigurni da razdužujete opremu: @item.Marka , @item.Model ?')">
+                                        <button type="submit" class="btn btn-danger btn-sm">Razduzenje</button>
+                                    </form>
+                                </div>
+                            }
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

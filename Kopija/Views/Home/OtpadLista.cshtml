@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Kopija.ModeliPomocni.OtpadListaModel>
+
+@{
+    ViewData["Title"] = "Lista Opreme na otpadu";
+}
+
+<h1 class="my-4">Kompletna Lista opreme na otpadu</h1>
+
+<div id="Stampanje" class="card mb-4 oprema-radnika">
+    <div id="pdfContainer" class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                     <th>
+                        @Html.DisplayNameFor(model => model.QRKod)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Marka)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Model)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.KategorijaIme)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sektor)
+                    </th>
+                   
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cena)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.ImeDobavljaca)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Razlog)
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QRKod)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Marka)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KategorijaIme)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sektor)
+                        </td>
+                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cena)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ImeDobavljaca)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Razlog)
+                        </td>
+                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

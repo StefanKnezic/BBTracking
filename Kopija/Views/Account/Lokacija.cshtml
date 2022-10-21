@@ -1,0 +1,53 @@
+﻿@model Kopija.Modeli.lokacija
+
+@{
+    ViewData["Title"] = "Radnja";
+}
+
+<h1 class="my-4">Dodaj Radnju</h1>
+<ol class="breadcrumb mb-2">
+    <li class="breadcrumb-item active">@Html.ActionLink("Lista Radnji", "LokacijaLista")</li>
+</ol>
+
+<div class="row">
+    <div class="col-lg-5 mx-auto">
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <p class="mb-0"><i class="fa-solid fa-check"></i> @ViewBag.Message</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        <div class="card mb-4">
+            <div class="card-body">
+                <form asp-action="Lokacija">
+                    <div class="mb-3">
+                        <label asp-for="lokacija_ime" class="control-label"></label>
+                        <input asp-for="lokacija_ime" class="form-control" />
+                        <span asp-validation-for="lokacija_ime" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="lokacija_adresa" class="control-label"></label>
+                        <input asp-for="lokacija_adresa" class="form-control" />
+                        <span asp-validation-for="lokacija_adresa" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="lokacija_mesto" class="control-label"></label>
+                        <input asp-for="lokacija_mesto" class="form-control" />
+                        <span asp-validation-for="lokacija_mesto" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <div class="float-end">
+                            <button type="sumbit" class="btn btn-danger">Dodaj</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

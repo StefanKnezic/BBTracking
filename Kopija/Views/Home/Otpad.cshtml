@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model Kopija.ModeliPomocni.OtpadModel
+    ViewData["Title"] = "Otpad";
+}
+
+<h1 class="my-4">Slanje opreme na otpad</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"><a asp-action="Oprema">Dodaj Novu opremu na stanje</a></li>
+    <li class="breadcrumb-item active">@Html.ActionLink("Nazad", "Oprema")</li>
+    <li class="breadcrumb-item">Slanje opreme na otpad</li>
+</ol>
+
+<div class="row">
+    <div class="col-lg-5 mx-auto">
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <p class="mb-0"><i class="fa-solid fa-check"></i> @ViewBag.Message</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        <div class="card mb-4">
+            <div class="card-body">
+                <form asp-action="Otpad">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="mb-3">
+                        <label asp-for="RazlogOtpada" class="control-label"></label>
+                        <input asp-for="RazlogOtpada" class="form-control" />
+                        <span asp-validation-for="RazlogOtpada" class="text-danger"></span>
+                    </div>          
+                    <div class="mb-3">
+                        <div class="float-end">
+                            <input type="submit" value="Otpad" class="btn btn-danger" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

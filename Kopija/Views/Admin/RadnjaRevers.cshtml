@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Kopija.Modeli.lokacija>
+
+@{
+    ViewData["Title"] = "Lista Radnji";
+}
+
+<h1 class="my-4">Lista Radnji</h1>
+<ol class="breadcrumb mb-2">
+
+    <li class="breadcrumb-item">Spisak Radnji</li>
+</ol>
+
+<div id="Stampanje" class="card mb-4 oprema-radnika">
+    <div id="pdfContainer" class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.lokacija_ime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.lokacija_adresa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.lokacija_mesto)
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lokacija_ime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lokacija_adresa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lokacija_mesto)
+                        </td>
+                        <td>
+                            <a asp-controller="Admin" asp-action="Revers" asp-route-id="@item.lokacija_id">Trenutna Oprema u @item.lokacija_ime</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

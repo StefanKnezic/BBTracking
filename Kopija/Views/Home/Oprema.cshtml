@@ -1,0 +1,106 @@
+﻿@model Kopija.Modeli.oprema
+
+@{
+    ViewData["Title"] = "Oprema";
+}
+
+<h1 class="my-4">Dodavanje opreme na stanje i pregled opreme</h1>
+<ol class="breadcrumb mb-2">
+    <li class="breadcrumb-item active">@Html.ActionLink("Lista Opreme na stanju", "OpremaLista")</li>
+    <li class="breadcrumb-item active">@Html.ActionLink("Lista kompletne Opreme", "OpremaListaSvi")</li>
+    <li class="breadcrumb-item active">@Html.ActionLink("Lista opreme na stanju u sektoru", "OpremaListaSektor")</li>
+</ol>
+
+@if (ViewBag.Message != null) {
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <p class="mb-0"><i class="fa-solid fa-check"></i> @ViewBag.Message</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p class="mb-0"><i class="fas fa-exclamation-triangle"></i> @Html.ValidationMessage("QR")</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form asp-action="Oprema">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label asp-for="oprema_qr_kod" class="control-label"></label>
+                        <input asp-for="oprema_qr_kod" class="form-control" />
+                        <span asp-validation-for="oprema_qr_kod" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="oprema_kategorija_id" class="control-label"></label>
+                        <select class="selectpicker form-control" data-live-search="true" data-container="body" aria-label="Default select example" asp-for="oprema_kategorija_id" asp-items="@(new SelectList(ViewBag.kategorija,"oprema_kategorija_id","oprema_kategorija_ime"))">
+                            <option value="">Izaberi opremu kategorije</option>
+                        </select>
+                        <span asp-validation-for="oprema_kategorija_id" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="oprema_marka" class="control-label"></label>
+                        <input asp-for="oprema_marka" class="form-control" />
+                        <span asp-validation-for="oprema_marka" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="oprema_model" class="control-label"></label>
+                        <input asp-for="oprema_model" class="form-control" />
+                        <span asp-validation-for="oprema_model" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="oprema_serijski_broj" class="control-label"></label>
+                        <input asp-for="oprema_serijski_broj" class="form-control" />
+                        <span asp-validation-for="oprema_serijski_broj" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class='mb-3 date'>
+                        <label asp-for="oprema_datum_nabavke"></label>
+                        <input asp-for="oprema_datum_nabavke" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" placeholder="Izaberi datum nabavka opreme" required aria-label="Izaberi datum" />
+                        <span asp-validation-for="oprema_datum_nabavke" class="text-danger"></span>
+                    </div>
+                    <div class='mb-3 date'>
+                        <label asp-for="oprema_garancija"></label>
+                        <input asp-for="oprema_garancija" value="@DateTime.Today.AddYears(2).ToString("yyyy-MM-dd")" class="form-control" placeholder="Izaberi poslednji dan garancije" required aria-label="Izaberi datum" />
+                        <span asp-validation-for="oprema_garancija" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="oprema_cena" class="control-label"></label>
+                        <input asp-for="oprema_cena" class="form-control" />
+                        <span asp-validation-for="oprema_cena" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="oprema_dostavljac_id" class="control-label"></label>
+                        <select class="selectpicker form-control" data-live-search="true" data-container="body" aria-label="Default select example" asp-for="oprema_dostavljac_id" asp-items="@(new SelectList(ViewBag.dostavljac,"dostavljac_id","dostavljac_ime"))">
+                            <option value="">Izaberi dobavljaca opreme</option>
+                        </select>
+                        <span asp-validation-for="oprema_dostavljac_id" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="oprema_napomena" class="control-label"></label>
+                        <input asp-for="oprema_napomena" class="form-control" />
+                        <span asp-validation-for="oprema_napomena" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="float-end">
+                            <input type="submit" value="Dodaj" class="btn btn-danger" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

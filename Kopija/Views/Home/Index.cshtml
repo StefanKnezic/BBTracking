@@ -1,0 +1,123 @@
+﻿@{
+    ViewData["Title"] = "Kontrolna tabla";
+    
+    
+}
+@{
+    @model Kopija.ModeliPomocni.SearchIndexModel
+
+}
+
+<body class="sb-nav-fixed">
+
+    <h1 class="my-4">Kontrolna tabla</h1>
+    
+
+
+    @if (User.Identity.IsAuthenticated)
+    {
+    
+    @*<div class="my-3">
+
+            @if (ViewData.ModelState["Ima"] != null)
+            {
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <p class="mb-0"><i class="fas fa-info-circle"></i> @Html.ValidationMessage("Ima")</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (ViewData.ModelState["Nema"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <p class="mb-0"><i class="fas fa-exclamation-triangle"></i>@Html.ValidationMessage("Nema")</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <form asp-action="Index" asp-controller="Home">
+                <div class="input-group">
+                    <input type="text" asp-for="Qr" class="form-control" placeholder="Pronadji uredjaj">
+                    <div class="input-group-append">
+                        <button class="btn btn-danger" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        
+    </div>*@
+
+    }
+
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <a class="card-dft" asp-area="" asp-controller="Home" asp-action="Oprema">
+                    <div class="card-body">
+                        <div class="w-100">
+                            <h2 class="mb-0">Dodavanje</h2>
+                            <p class="mb-0">dodavanje nove opreme</p>
+                        </div>
+                        <div class="card-dft-end">
+                            <div class="icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <a class="card-dft" asp-area="" asp-controller="Home" asp-action="Relokacija">
+                    <div class="card-body">
+                        <div class="w-100">
+                            <h2 class="mb-0">Relokacija</h2>
+                            <p class="mb-0">Promeni lokaciju opreme</p>
+                        </div>
+                        <div class="card-dft-end">
+                            <div class="icon">
+                                <i class="fas fa-location"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <a class="card-dft" asp-area="" asp-controller="Home" asp-action="Servis">
+                    <div class="card-body">
+                        <div class="w-100">
+                            <h2 class="mb-0">Servis</h2>
+                            <p class="mb-0">Provera opreme na servisu</p>
+                        </div>
+                        <div class="card-dft-end">
+                            <div class="icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <a class="card-dft" asp-area="" asp-controller="Home" asp-action="OtpadLista">
+                    <div class="card-body">
+                        <div>
+                            <h2 class="mb-0">Otpad</h2>
+                            <p class="mb-0">Oprema koja je na otpadu</p>
+                        </div>
+                        <div class="card-dft-end">
+                            <div class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+

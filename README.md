@@ -1,4 +1,4 @@
-# BBTracking aplication <sub>application written in C#</sub>
+# BBTracking aplication _<sup>application written in C#</sup>_
 
-###### Home Page
+###### > Home Page
 ![](ScreenShoot/home.png)
